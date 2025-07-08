@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import { LuCrown, LuSettings } from "react-icons/lu";
 
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
-import { Link } from "react-router";
+import { useDispatch } from "react-redux"
+import { Link, Navigate, useNavigate } from "react-router";
+import { signedUser } from "../../reduxStorage/slices/authSlice"
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const dispatch = useDispatch()
+  const handleSignOut = () => {
+    dispatch(signedUser(null))
+    
+  }
 
   return (
     <>
@@ -19,7 +27,6 @@ const NavBar = () => {
           <div className="hidden md:block">
             <ul className="flex items-center md:gap-4 lg:gap-6 xl:gap-10 ">
               <li className=" cursor pointer">
-                {/* myProfile */}
                 <Link
                   to="/"
                   className="nav-li-css h-full  px-4 bg-[#00000040]  hover:bg-[#00000080] text-[#ffffff]  font-headerFont  text-[20px] border-transparent transition-all focus:scale-130 border-b-2 focus:border-white focus:bg-[#00000090]  "
@@ -51,6 +58,13 @@ const NavBar = () => {
               className=" nav-li-css h-full  px-4 bg-[#00000040] hover:bg-[#00000080] text-white font-headerFont text-[20px] border-transparent transition-all focus:scale-130 border-b-2 focus:border-white focus:bg-[#00000090]  "
             >
               my profile
+            </Link>
+            <Link
+              to="/myProfile"
+              onClick={handleSignOut}
+              className="ml-2 h-full  px-4 bg-[#00000040] hover:bg-[#00000080] text-white font-headerFont text-[20px] border-transparent transition-all focus:scale-130 border-b-2 focus:border-white focus:bg-[#00000090]  "
+            >
+              signOut
             </Link>
           </div>
 
