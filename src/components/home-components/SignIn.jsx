@@ -13,7 +13,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const myData = useSelector((state) => state.signedUserData.UserData);
-  console.log(myData);
+  
 
   
   const [userData, setUserData] = useState({
@@ -24,9 +24,21 @@ const SignIn = () => {
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
-        dispatch(signedUser(userCredential.user))
-      toast.success("signed in successfully");
-      navigate("/");
+        
+        
+        if (!userCredential.user.emailVerified) {
+          
+          toast.error("verify your email before sign in");
+          
+        } else {
+          dispatch(signedUser(userCredential.user))
+          console.log(userCredential.user)
+          toast.success("signed in successfully");
+          navigate("/");
+          
+          
+        }
+        
     })
     .catch((error) => {
       if (error.code == "auth/missing-password") {

@@ -10,12 +10,13 @@ import {
 } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { signedUser } from "../../../reduxStorage/slices/authSlice"
+import { getDatabase, push, ref, set } from "firebase/database";
 
 const SignUp = () => {
   const auth = getAuth();
+  const db = getDatabase();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  
   const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useState({
     userName: "",
@@ -24,61 +25,53 @@ const SignUp = () => {
   });
   const myData = useSelector((state) => state.signedUserData.UserData);
 
-  
   const handleSignUp = () => {
-    
-    
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
-    .then((userCredential) => {
-      
-      updateProfile(auth.currentUser, {
-        displayName: userData.userName,
-        photoURL: "/my-image.jpg", // image update
-      })
-      .then(() => {
-        sendEmailVerification(auth.currentUser).then(() => {
-          console.log(auth.currentUser);
-          
-          if (!auth.currentUser.emailVerified) {
-            dispatch(signedUser(userCredential.user));
-            console.log(userCredential.user); 
-            
+      .then((userCredential) => {
+        updateProfile(auth.currentUser, {
+          displayName: userData.userName,
+          photoURL: "/my-image.jpg", // image update
+        })
+          .then(() => {
+            sendEmailVerification(auth.currentUser).then(() => {
+              set(ref(db, "userList/" + auth.currentUser.uid), {
+                userName: auth.currentUser.displayName,
+                photoURL: "blank",
+                email: auth.currentUser.email,
+                userID: auth.currentUser.uid,
+              });
+            });
+
+           
             toast.success("profile Created successfully..!");
             setTimeout(() => {
               navigate("/signIn");
             }, 1500);
-          }
-        });
+          })
+          .catch((error) => {
+            //  empty
+          });
       })
       .catch((error) => {
-        //  empty
-        
-      });
-    })
-    .catch((error) => {
-      
-      if (error.code == "auth/email-already-in-use") {
-        toast.error("email already in use...!");
-      } else if (error.code == "auth/missing-password") {
-        toast.error("password is missing...!");
-      } else if (error.code == "auth/weak-password") {
-        toast.error("password is weak");
-      } else if (error.code == "auth/email-already-in-use") {
-        toast.error("");
-      } else if (error.code == "auth/invalid-email") {
-        toast.error(" enter an valid email");
-      }
-      if (error.code == "auth/invalid-email") {
+        if (error.code == "auth/email-already-in-use") {
+          toast.error("email already in use...!");
+        } else if (error.code == "auth/missing-password") {
+          toast.error("password is missing...!");
+        } else if (error.code == "auth/weak-password") {
+          toast.error("password is weak");
+        } else if (error.code == "auth/email-already-in-use") {
+          toast.error("");
+        } else if (error.code == "auth/invalid-email") {
+          toast.error(" enter an valid email");
+        }
+        if (error.code == "auth/invalid-email") {
           toast.error("password missing");
         } else if (error.code == "auth/missing-email") {
           toast.error("enter an email");
         }
       });
-    };
-    
-    if (myData) {
-      return <Navigate to={"/"} />
-    }
+  };
+
   return (
     <>
       <div>
