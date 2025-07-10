@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
-import { signedUser } from "../../../reduxStorage/slices/authSlice"
+import { signedUser } from "../../../reduxStorage/slices/MyAuthSlice"
+
 
 const SignIn = () => {
   const auth = getAuth();

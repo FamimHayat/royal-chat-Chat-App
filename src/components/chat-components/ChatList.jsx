@@ -1,15 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import User from "../User,Friend,Group/User";
 import { HiPlusSmall } from "react-icons/hi2";
-import SearchBar from "../other_components/SearchBar"
-import Friend from "../User,Friend,Group/Friend"
-
+import SearchBar from "../other_components/SearchBar";
+import Friend from "../User,Friend,Group/Friend";
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useSelector } from "react-redux";
 
 const ChatList = () => {
-  const [userModal ,setUserModal] = useState(false)
+  const db = getDatabase();
+  const [userModal, setUserModal] = useState(false);
+  const [userList, setUserList] = useState([]);
+  const [friendList, setFriendList] = useState([]);
+  const myData = useSelector((state) => state.signedUserData.UserData);
+  const friendData = useSelector((state) => state.friendUserData.UserData);
+  // const
+
+  useEffect(() => {
+    onValue(ref(db, "userList/"), (snapshot) => {
+      let arr = [];
+      snapshot.forEach((items) => {
+        arr.push({ ...items.val(), id: items.key });
+      });
+      setUserList(arr);
+    });
+    onValue(ref(db, "friendList/"), (snapshot) => {
+      let arr = [];
+      snapshot.forEach((items) => {
+        if (
+          items.val().creatorId === myData.uid ||
+          items.val().participantId === myData.uid
+        ) {
+          arr.push({ ...items.val(), id: items.key });
+        }
+      });
+      setFriendList(arr);
+    });
+  }, []);
+
   return (
     <>
+      {/* userList  codes starts here*/}
       {userModal && (
         <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] bg-[#000000d1]">
           <div className="absolute md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#98a1bc] left-1/2 top-5">
@@ -25,36 +56,15 @@ const ChatList = () => {
               </button>
             </div>
             <div className=" h-[calc(100dvh-365px)] flex flex-col gap-2 rounded-2xl mt-1 overflow-y-auto">
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
+              {userList.map(
+                (item) =>
+                  item.id !== myData.uid && <User key={item.id} data={item} />
+              )}
             </div>
           </div>
         </div>
       )}
+      {/* userList  codes ends here*/}
       <section className="border-2 md:w-3xl lg:w-4xl  rounded-2xl h-[calc(100dvh-63px)] overflow-hidden ">
         <div>
           <div className="mx-4 mb-2 mt-4 lg:mt-6 flex">
@@ -73,9 +83,28 @@ const ChatList = () => {
             <SearchBar />
             <div></div>
           </div>
-          <div className="grid grid-cols-1 gap-1 h-[calc(100dvh-55px)]  overflow-y-auto ">
-            <Friend />
+          {/* friendList  codes starts here*/}
+
+          <div className="flex flex-col gap-1 h-[calc(100dvh-55px)]  overflow-y-auto ">
+            {friendList.map((item) =>
+              item.creatorId === myData.uid ? (
+                <Friend
+                  key={item.id}
+                  userName={item.participantUserName}
+                  profilePicture={item.participantPhotoURL}
+                  id={item.participantId}
+                />
+              ) : (
+                <Friend
+                  key={item.id}
+                  userName={item.creatorUserName}
+                  profilePicture={item.creatorPhotoURL}
+                  id={item.creatorId}
+                />
+              )
+            )}
           </div>
+          {/* friendList  codes ends here*/}
         </div>
       </section>
     </>

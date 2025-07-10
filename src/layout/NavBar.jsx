@@ -4,7 +4,8 @@ import { LuCrown, LuSettings } from "react-icons/lu";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { useDispatch } from "react-redux"
 import { Link, Navigate, useNavigate } from "react-router";
-import { signedUser } from "../../reduxStorage/slices/authSlice"
+import { signedUser } from "../../reduxStorage/slices/MyAuthSlice"
+
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);

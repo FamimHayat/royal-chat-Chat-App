@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAuth, updateProfile } from "firebase/auth";
-import { signedUser } from "../../reduxStorage/slices/authSlice";
+import { signedUser } from "../../reduxStorage/slices/MyAuthSlice"
+
 
 const MyProfile = () => {
   const auth = getAuth();

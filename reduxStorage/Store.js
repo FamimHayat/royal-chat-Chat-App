@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import  authSlice  from "./slices/authSlice";
+
+import MyAuthSlice from "./slices/MyAuthSlice";
+import FriendAuthSlice from "./slices/FriendAuthSlice";
 
 export default configureStore({
   reducer: {
-    signedUserData: authSlice,
+    signedUserData: MyAuthSlice,
+    friendUserData: FriendAuthSlice,
   },
 });
