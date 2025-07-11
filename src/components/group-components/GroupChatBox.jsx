@@ -14,7 +14,10 @@ const GroupChatBox = () => {
     fileInputRef.current.click();
   };
   return (
-    <section className=" w-full h-[calc(100dvh-63px)]  ml-3">
+    <section
+      className=" w-full h-[calc(100dvh-63px)]  ml-3 border-[#00000047] bg-[#0051f315] 
+backdrop-blur-[9px] backdrop-saturate-[120%]"
+    >
       <div className=" border-2 rounded-2xl">
         <div className="flex items-center gap-5 justify-center py-1 border-b-2 border-[#ffffff3a]">
           <img src="/groups.png" alt="my-image" className="w-18 rounded-full" />

@@ -25,7 +25,9 @@ red {
 }
 
 body {
-  background-color: #98a1bc;
+  background-image: url('../public/chat-app.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .sada {
@@ -38,4 +40,32 @@ a {
 
 .asdsda {
   background-color: #00000096;
+}
+
+
+.EmojiPickerReact {
+  background-color: #282727c6 !important;
+ 
+  border-radius: 12px !important;
+  color: white !important;
+}
+
+/* Search bar */
+.EmojiPickerReact .epr-search-container input {
+  background-color: #1c1c1c !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* Category tabs */
+.EmojiPickerReact .epr-category-nav {
+  background-color: #2b2b2b !important;
+}
+
+/* Each emoji cell */
+.EmojiPickerReact .epr-emoji {
+  transition: transform 0.1s;
+}
+.EmojiPickerReact .epr-emoji:hover {
+  transform: scale(1.15);
 }

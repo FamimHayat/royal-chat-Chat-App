@@ -2,10 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { friendUser } from "../../../reduxStorage/slices/FriendAuthSlice";
 
-const Friend = ({ userName, profilePicture, id }) => {
+const Friend = ({
+  userName,
+  profilePicture,
+  id,
+  conversationId,
+  lastMessage,
+}) => {
   const dispatch = useDispatch();
   const handleActiveChat = () => {
-    dispatch(friendUser({ userName, profilePicture, id }));
+    dispatch(friendUser({ userName, profilePicture, id, conversationId }));
   };
 
   return (
@@ -25,8 +31,8 @@ const Friend = ({ userName, profilePicture, id }) => {
           <p className="text-2xl font-headerFont text-white tracking-wide">
             {userName}
           </p>
-          <p className="text-lg font-textFont text-white tracking-wide">
-            friendMassage
+          <p className="text-lg font-textFont text-stone-300 tracking-wide">
+            {lastMessage}
           </p>
         </div>
         <div className="ml-auto">

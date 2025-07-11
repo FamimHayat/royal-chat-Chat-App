@@ -8,8 +8,6 @@ export const FriendAuthSlice = createSlice({
   reducers: {
     friendUser: (state, action) => {
       state.UserData = action.payload;
-      console.log(action.payload);
-      
     },
   },
 });

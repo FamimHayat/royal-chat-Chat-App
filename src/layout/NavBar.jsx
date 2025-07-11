@@ -18,10 +18,10 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className=" bg-[#0000002b] mx-auto px-6 py-3 border-b-1 border-[#ffffff4e]">
+      <nav className=" bg-[#0000002b] mx-auto px-6 py-3 border-b-1 border-[#ffffff4e] backdrop-blur-[9px] backdrop-saturate-[120%]">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-[25px] flex gap-2 items-center  font-semibold tracking-wide text-[#000000d4] font-headerFont">
+            <h2 className="text-[25px] flex gap-2 items-center  text-[#ffff]  font-headerFont">
               <LuCrown /> Royal chat
             </h2>
           </div>

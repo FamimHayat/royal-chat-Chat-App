@@ -12,7 +12,7 @@ const GroupChatList = () => {
     <>
       {groupCreateModal && (
         <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] bg-[#000000d1]">
-          <div className="absolute md:w-[280px] lg:w-[450px] h-fit py-10 p-2 z-1  rounded-2xl bg-[#98a1bc] left-1/2 top-55">
+          <div className="absolute md:w-[280px] lg:w-[450px] h-fit py-10 p-2 z-1 bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%]   rounded-2xl left-1/2 top-55">
             <div className="flex gap-2 p-2 pb-5  border-b-2">
               <p className="text-4xl p-1 font-headerFont text-white bg-[#0000008d] ">
                 create group
@@ -41,7 +41,7 @@ const GroupChatList = () => {
       )}
       {groupJoinModal && (
         <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] bg-[#000000d1]">
-          <div className="absolute md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#98a1bc] left-1/2 top-5">
+          <div className="absolute md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%]  left-1/2 top-5">
             <div className="flex gap-2 p-2 pb-5  border-b-2">
               <p className="text-4xl p-1 font-headerFont text-white bg-[#0000008d] ">
                 group list
@@ -53,7 +53,7 @@ const GroupChatList = () => {
                 back <span className="ml-4">X</span>
               </button>
             </div>
-            <div className=" h-[calc(100dvh-365px)] flex flex-col gap-2 rounded-2xl mt-1 overflow-y-auto">
+            <div className=" h-[calc(100dvh-365px)] flex flex-col gap-2 rounded-2xl mt-1 overflow-y-auto bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%] ">
               <GroupItem />
               <GroupItem />
               <GroupItem />
@@ -76,7 +76,7 @@ const GroupChatList = () => {
         </div>
       )}
 
-      <section className="border-2 md:w-3xl lg:w-4xl rounded-2xl h-[calc(100dvh-63px)] overflow-hidden ">
+      <section className="border-2 md:w-3xl lg:w-4xl rounded-2xl h-[calc(100dvh-63px)] overflow-hidden border-[#00000047] bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%] ">
         <div>
           <div className="mx-4 mb-2 mt-4 lg:mt-6 flex justify-between">
             <p className="text-white font-headerFont text-3xl tracking-wide">

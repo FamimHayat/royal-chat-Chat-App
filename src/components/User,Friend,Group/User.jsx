@@ -22,6 +22,8 @@ const User = ({ data }) => {
       participantUserName: data.userName,
       participantEmail: data.email,
       participantPhotoURL: data.photoURL,
+      //last message
+      lastMessage: "",
     });
   };
 
@@ -48,20 +50,19 @@ const User = ({ data }) => {
       </div>
       <div className="ml-auto">
         {friendList.includes(myData.uid + data.id) ||
-          friendList.includes(data.id + myData.uid) ?
-         <div className="flex items-center gap-2 bg-[#00000089] p-1">
-          <p className=" hidden sm:flex text-green-600 text-2xl ">friends</p>
-          <IoCheckmarkDoneSharp className=" text-xl text-green-600" />
-        </div> 
-        :
-        <button
-          onClick={handleAdd}
-          className="w-fit ml-auto bg-[#0000007d] mr-2 text-white py-1.5 rounded-4xl font-headerFont flex items-center  text-2xl  cursor-pointer px-4 active:bg-transparent transition-all hover:text-[#000000c3] hover:bg-[#7bc36bfc]"
-        >
-          add
-        </button>
-        }
-
+        friendList.includes(data.id + myData.uid) ? (
+          <div className="flex items-center gap-2 bg-[#00000089] p-1">
+            <p className=" hidden sm:flex text-green-600 text-2xl ">friends</p>
+            <IoCheckmarkDoneSharp className=" text-xl text-green-600" />
+          </div>
+        ) : (
+          <button
+            onClick={handleAdd}
+            className="w-fit ml-auto bg-[#0000007d] mr-2 text-white py-1.5 rounded-4xl font-headerFont flex items-center  text-2xl  cursor-pointer px-4 active:bg-transparent transition-all hover:text-[#000000c3] hover:bg-[#7bc36bfc]"
+          >
+            add
+          </button>
+        )}
       </div>
     </div>
   );

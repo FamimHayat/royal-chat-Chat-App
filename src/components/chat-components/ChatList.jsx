@@ -13,7 +13,9 @@ const ChatList = () => {
   const [userList, setUserList] = useState([]);
   const [friendList, setFriendList] = useState([]);
   const myData = useSelector((state) => state.signedUserData.UserData);
-  const friendData = useSelector((state) => state.friendUserData.UserData);
+  
+  
+  
   // const
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const ChatList = () => {
       {/* userList  codes starts here*/}
       {userModal && (
         <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] bg-[#000000d1]">
-          <div className="absolute md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#98a1bc] left-1/2 top-5">
+          <div className="absolute md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#0051f3] left-1/2 top-5">
             <div className="flex gap-2 p-2 pb-5  border-b-2">
               <p className="text-4xl p-1 font-headerFont text-white bg-[#0000008d] ">
                 user list{" "}
@@ -65,9 +67,9 @@ const ChatList = () => {
         </div>
       )}
       {/* userList  codes ends here*/}
-      <section className="border-2 md:w-3xl lg:w-4xl  rounded-2xl h-[calc(100dvh-63px)] overflow-hidden ">
+      <section className="border-2 border-[#0000004b] md:w-3xl lg:w-4xl  rounded-2xl h-[calc(100dvh-63px)] bg-[#0051f315] overflow-hidden backdrop-blur-[9px] backdrop-saturate-[120%] shadow-2xl">
         <div>
-          <div className="mx-4 mb-2 mt-4 lg:mt-6 flex">
+          <div className="mx-4 mb-2 mt-4 lg:mt-6 flex ">
             <p className="text-white font-headerFont text-3xl tracking-wide">
               chat with friends
             </p>
@@ -90,16 +92,20 @@ const ChatList = () => {
               item.creatorId === myData.uid ? (
                 <Friend
                   key={item.id}
+                  conversationId={item.id}
                   userName={item.participantUserName}
                   profilePicture={item.participantPhotoURL}
                   id={item.participantId}
+                  lastMessage={item.lastMessage}
                 />
               ) : (
                 <Friend
                   key={item.id}
+                  conversationId={item.id}
                   userName={item.creatorUserName}
                   profilePicture={item.creatorPhotoURL}
                   id={item.creatorId}
+                  lastMessage={item.lastMessage}
                 />
               )
             )}
