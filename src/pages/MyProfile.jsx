@@ -42,15 +42,15 @@ const MyProfile = () => {
 
       <div className="md:scale-120 lg:scale-150 xl:scale-180 relative w-[240px] h-[330px] mx-auto mt-[250px] rounded-2xl overflow-hidden shadow-[0px_8px_28px_-9px_rgba(0,0,0,0.45)] bg-transparent">
         <div
-          className="absolute w-[540px] h-[700px] opacity-60 top-0 left-0 -ml-1/2 -mt-[70%] bg-gradient-to-tr from-[#af40ff] via-[#5b42f3] to-[#00ddeb] rounded-[40%]"
+          className="absolute w-[540px] h-[700px] opacity-60 top-0 left-0 -ml-1/2 -mt-[70%] bg-gradient-to-tr from-[#5040ff] via-[#424ef3] to-[#4265f3] rounded-[40%]"
           style={{ animation: "wave 25s linear infinite" }}
         />
         <div
-          className="absolute w-[540px] h-[700px] opacity-60 top-[210px] left-0 -ml-1/2 -mt-[70%] bg-gradient-to-tr from-[#af40ff] via-[#5b42f3] to-[#00ddeb] rounded-[40%]"
+          className="absolute w-[540px] h-[700px] opacity-60 top-[210px] left-0 -ml-1/2 -mt-[70%] bg-gradient-to-tr from-[#5040ff] via-[#424ef3] to-[#4265f3] rounded-[40%]"
           style={{ animation: "wave 30s linear infinite" }}
         />
         <div
-          className="absolute w-[540px] h-[700px] opacity-60 top-[210px] left-0 -ml-1/2 -mt-[70%] bg-gradient-to-tr from-[#af40ff] via-[#5b42f3] to-[#00ddeb] rounded-[40%]"
+          className="absolute w-[540px] h-[700px] opacity-60 top-[210px] left-0 -ml-1/2 -mt-[70%] bg-gradient-to-tr from-[#5040ff] via-[#424ef3] to-[#4265f3] rounded-[40%]"
           style={{ animation: "wave 15s linear infinite" }}
         />
 

@@ -4,11 +4,13 @@
   margin: 0 auto;
 }
 
+*::-webkit-scrollbar{
+  display: none;
+}
+
 @theme {
   --color-primary: #282727;
-  --color-secondary: #98a1bc;
-  --color-brand: #;
-  --color-text: #;
+
 
   --font-headerFont: "Cal Sans", sans-serif;
   --font-textFont: "Noto Sans", sans-serif;
@@ -29,6 +31,15 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.component-body {
+  background-image: url('../public/chat-app.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
 
 .sada {
   background-color: #282727;

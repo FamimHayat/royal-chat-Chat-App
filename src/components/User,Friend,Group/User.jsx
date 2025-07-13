@@ -39,7 +39,7 @@ const User = ({ data }) => {
   }, []);
 
   return (
-    <div className="w-full flex items-center h-fit   py-1 bg-[#0000004b] px-4 active:bg-transparent">
+    <div className="w-full flex items-center h-fit   py-1 bg-[#000000be] px-4 active:bg-transparent">
       <div className="h-15 w-15 border-2 border-transparent mr-2 lg:mr-5 rounded-full outline-2 ">
         <img src="/users.png" alt="user-image" className="w-15 rounded-full " />
       </div>

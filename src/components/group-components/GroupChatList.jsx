@@ -11,8 +11,8 @@ const GroupChatList = () => {
   return (
     <>
       {groupCreateModal && (
-        <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] bg-[#000000d1]">
-          <div className="absolute md:w-[280px] lg:w-[450px] h-fit py-10 p-2 z-1 bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%]   rounded-2xl left-1/2 top-55">
+        <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] z-20 bg-[#1a5efdaa]">
+          <div className="absolute md:w-[280px] component-body lg:w-[450px] h-fit py-10 p-2 z-1 bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%]   rounded-2xl left-1/2 top-55">
             <div className="flex gap-2 p-2 pb-5  border-b-2">
               <p className="text-4xl p-1 font-headerFont text-white bg-[#0000008d] ">
                 create group
@@ -40,8 +40,8 @@ const GroupChatList = () => {
         </div>
       )}
       {groupJoinModal && (
-        <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] bg-[#000000d1]">
-          <div className="absolute md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%]  left-1/2 top-5">
+        <div className="absolute w-full rounded-2xl  h-[calc(100dvh-63px)] z-20 bg-[#1a5efdaa]">
+          <div className="absolute md:w-[280px] component-body  lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%]  left-1/2 top-5">
             <div className="flex gap-2 p-2 pb-5  border-b-2">
               <p className="text-4xl p-1 font-headerFont text-white bg-[#0000008d] ">
                 group list

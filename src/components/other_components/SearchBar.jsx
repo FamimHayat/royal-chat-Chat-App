@@ -23,9 +23,8 @@ const SearchBar = () => {
         </svg>
       </button>
       <input
-        className="input rounded-full w-full px-8 py-3 border-2 bg-[#000000c3] border-transparent focus:outline-none  focus:border-stone-300 placeholder-stone-400 transition-all duration-300 shadow-[inset_2px_5px_10px_rgb(5,5,5)] text-white font-textFont"
+        className="input rounded-full w-full px-8 py-3 border-2 bg-[#2b2b2b] border-transparent focus:outline-none  focus:border-stone-300 placeholder-stone-400 transition-all duration-300 shadow-[inset_2px_5px_10px_rgb(5,5,5)] text-white font-textFont"
         placeholder="Search..."
-        
         type="text"
       />
       <button

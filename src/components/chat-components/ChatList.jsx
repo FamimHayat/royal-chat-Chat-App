@@ -44,15 +44,15 @@ const ChatList = () => {
     <>
       {/* userList  codes starts here*/}
       {userModal && (
-        <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] bg-[#000000d1]">
-          <div className="absolute md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#0051f3] left-1/2 top-5">
+        <div className="absolute w-full rounded-2xl h-[calc(100dvh-63px)] z-20 bg-[#1a5efdaa]">
+          <div className="absolute component-body  shadow-2xl md:w-[280px] lg:w-[400px] h-[calc(100dvh-263px)] p-2 z-1  rounded-2xl bg-[#0051f3] left-1/2 top-20">
             <div className="flex gap-2 p-2 pb-5  border-b-2">
               <p className="text-4xl p-1 font-headerFont text-white bg-[#0000008d] ">
                 user list{" "}
               </p>
               <button
                 onClick={() => setUserModal(false)}
-                className="w-fit ml-auto bg-[#000000a2] mr-2 text-white py-1.5 rounded-4xl font-headerFont flex items-center  text-2xl  cursor-pointer px-4 active:bg-transparent transition-all hover:bg-[#000d]"
+                className="w-fit ml-auto bg-[#000000a2] mr-2 text-white py-1.5 rounded-4xl font-headerFont flex items-center  text-2xl  cursor-pointer px-4 active:bg-transparent transition-all hover:bg-[#cb0404]"
               >
                 back <span className="ml-4">X</span>
               </button>

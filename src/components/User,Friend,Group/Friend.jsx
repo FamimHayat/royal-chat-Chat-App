@@ -22,7 +22,7 @@ const Friend = ({
       >
         <div className="h-15 w-15 border-2 border-transparent mr-2 lg:mr-5 rounded-full outline-2 ">
           <img
-            src={profilePicture}
+            src="/friends.png"
             alt="user-image"
             className="w-15 rounded-full "
           />
@@ -32,7 +32,9 @@ const Friend = ({
             {userName}
           </p>
           <p className="text-lg font-textFont text-stone-300 tracking-wide">
-            {lastMessage}
+            {lastMessage && lastMessage.length > 12
+              ? lastMessage.substring(0, 15) + "..."
+              : lastMessage}
           </p>
         </div>
         <div className="ml-auto">
