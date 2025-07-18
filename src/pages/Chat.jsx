@@ -1,7 +1,8 @@
 import React from "react";
 import ChatList from "../components/chat-components/ChatList";
-import ChatBox from "../components/chat-components/Chatbox";
 import { useSelector } from "react-redux"
+import ChatBox from "../components/chat-components/ChatBox"
+
 
 const Chat = () => {
   const friendData = useSelector((state) => state.friendUserData.UserData);

@@ -7,5 +7,6 @@ export default configureStore({
   reducer: {
     signedUserData: MyAuthSlice,
     friendUserData: FriendAuthSlice,
+    activeGroupData: FriendAuthSlice,
   },
 });

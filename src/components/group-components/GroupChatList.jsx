@@ -4,10 +4,52 @@ import { HiPlusSmall } from "react-icons/hi2";
 
 import SearchBar from "../other_components/SearchBar";
 import GroupItem from "../User,Friend,Group/GroupItem";
+import MyGroup from "../User,Friend,Group/MyGroup";
+import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const GroupChatList = () => {
+  const db = getDatabase();
   const [groupCreateModal, setGroupCreateModal] = useState(false);
   const [groupJoinModal, setGroupJoinModal] = useState(false);
+  const [groupName, setGroupName] = useState("");
+  const [groups, setGroups] = useState([]);
+  const [groupMember, setGroupMember] = useState([]);
+
+  const myData = useSelector((state) => state.signedUserData.UserData);
+
+  const handleCreateGroup = () => {
+    set(push(ref(db, "groupList/")), {
+      groupName,
+      creatorName: myData.displayName,
+      creatorId: myData.uid,
+    });
+    setGroupCreateModal(false);
+  };
+
+  useEffect(() => {
+    onValue(ref(db, "groupMembers/"), (snapshot) => {
+      let memberIds = [];
+      snapshot.forEach((items) => {
+        if (items.val().memberId === myData.uid) {
+          memberIds.push(items.val().groupId);
+        }
+      });
+
+      setGroupMember(memberIds);
+
+      // Only now fetch group list
+      onValue(ref(db, "groupList/"), (groupSnap) => {
+        let arr = [];
+        groupSnap.forEach((groupItem) => {
+          arr.push({ ...groupItem.val(), id: groupItem.key });
+        });
+        setGroups(arr);
+      });
+    });
+  }, []);
+
   return (
     <>
       {groupCreateModal && (
@@ -28,10 +70,14 @@ const GroupChatList = () => {
               <input
                 type="text"
                 placeholder="group-name"
+                onChange={(e) => setGroupName(e.target.value)}
                 className="w-full py-3 rounded-4xl border-4 focus:border-[#000000c1] text-white outline-none bg-[#0000009f] px-5 text-xl shadow-[inset_2px_5px_10px_rgb(5,5,5)] mb-5"
               />
               <div className="w-full flex justify-center">
-                <button className=" bg-[#000000a2] mr-2 text-white py-1.5 rounded-4xl font-headerFont flex items-center  text-2xl  cursor-pointer px-4 active:bg-transparent transition-all hover:bg-[#000d]">
+                <button
+                  onClick={handleCreateGroup}
+                  className=" bg-[#000000a2] mr-2 text-white py-1.5 rounded-4xl font-headerFont flex items-center  text-2xl  cursor-pointer px-4 active:bg-transparent transition-all hover:bg-[#000d]"
+                >
                   create
                 </button>
               </div>
@@ -54,23 +100,16 @@ const GroupChatList = () => {
               </button>
             </div>
             <div className=" h-[calc(100dvh-365px)] flex flex-col gap-2 rounded-2xl mt-1 overflow-y-auto bg-[#0051f315] backdrop-blur-[9px] backdrop-saturate-[120%] ">
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
-              <GroupItem />
+              {groups.map((item) => {
+                if (
+                  !(
+                    item.creatorId === myData.uid ||
+                    groupMember.includes(item.id)
+                  )
+                ) {
+                  return <GroupItem key={item.id} data={item} />;
+                }
+              })}
             </div>
           </div>
         </div>
@@ -100,43 +139,15 @@ const GroupChatList = () => {
           <div className="border-b-2 flex items-center gap-1 border-[#00000024]">
             <SearchBar />
           </div>
-          <div className="grid grid-cols-1 gap-1 h-[calc(100dvh-55px)]  overflow-y-auto ">
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
-            <GroupItem />
+          <div className="flex flex-col gap-1 h-[calc(100dvh-55px)]  overflow-y-auto ">
+            {groups.map((item) => {
+              if (
+                item.creatorId === myData.uid ||
+                groupMember.includes(item.id)
+              ) {
+                return <MyGroup key={item.id} data={item} id={item.id} />;
+              }
+            })}
           </div>
         </div>
       </section>
